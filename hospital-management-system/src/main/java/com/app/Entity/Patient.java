@@ -12,7 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-import com.app.enums.Role;
+import com.app.Entity.Appointment;
+import com.app.Entity.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
