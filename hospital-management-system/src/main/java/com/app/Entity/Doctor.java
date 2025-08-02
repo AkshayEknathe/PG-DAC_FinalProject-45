@@ -4,6 +4,8 @@ package com.app.Entity;
 
 import java.util.List;
 
+import com.app.Entity.Role;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
