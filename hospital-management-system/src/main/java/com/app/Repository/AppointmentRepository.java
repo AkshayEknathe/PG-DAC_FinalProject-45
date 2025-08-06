@@ -1,5 +1,6 @@
 package com.app.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +17,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	
 	List<Appointment> findByDoctor_Id(Long doctorId);
 
+	List<Appointment> findByAppointmentDate(LocalDate date);
 
 
 

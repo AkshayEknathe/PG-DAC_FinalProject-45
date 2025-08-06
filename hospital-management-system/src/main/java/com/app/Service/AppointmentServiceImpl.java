@@ -1,5 +1,6 @@
 package com.app.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +78,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	public List<Appointment> getAppointmentsByDoctor(Long doctorId) {
 		return appointmentRepository.findByDoctor_Id(doctorId);
+	}
+
+	@Override
+	public List<Appointment> getAppointmentsByDate(LocalDate date) {
+		// TODO Auto-generated method stub
+		return appointmentRepository.findByAppointmentDate(date);
 	}
 
 }
