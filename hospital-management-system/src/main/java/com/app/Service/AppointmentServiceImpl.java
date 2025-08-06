@@ -1,58 +1,82 @@
 package com.app.Service;
 
-@Autowired
-private MailService mailService;
+import java.util.List;
+import java.util.Optional;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.DTO.AppointmentDTO;
+import com.app.DTO.UpdateAppointmentStatusDTO;
+import com.app.Entity.Appointment;
+import com.app.Entity.Doctor;
+import com.app.Entity.Patient;
+import com.app.Repository.AppointmentRepository;
+import com.app.Repository.DoctorRepository;
+import com.app.Repository.PatientRepository;
+import com.app.Repository.UserRepository;
+
+@Service
+@Transactional
 public class AppointmentServiceImpl implements AppointmentService {
 
+	@Autowired
+	private PatientRepository patientRepository;
 
-public Appointment updateAppointmentStatus(UpdateAppointmentStatusDTO dto) {
-	Optional<Appointment> optionalAppointment = appointmentRepository.findById(dto.getAppointmentId());
+	@Autowired
+	private DoctorRepository doctorRepository;
 
-    if (!optionalAppointment.isPresent()) {
-        throw new RuntimeException("Appointment not found with ID: " + dto.getAppointmentId());
-    }
+	@Autowired
+	private AppointmentRepository appointmentRepository;
 
-    Appointment appointment = optionalAppointment.get();
-    String status = dto.getStatus().toUpperCase();
-    appointment.setStatus(status);
-    Appointment updatedAppointment = appointmentRepository.save(appointment);
+	@Autowired
+	private UserRepository userRepository;
 
-    // 🔁 Extract common details
-    Patient patient = appointment.getPatient();
-    Doctor doctor = appointment.getDoctor();
+	public void bookAppointment(AppointmentDTO appointmentDTO) {
+		Optional<Patient> patientOpt = patientRepository.findById(appointmentDTO.getPatientId());
+		Optional<Doctor> doctorOpt = doctorRepository.findById(appointmentDTO.getDoctorId());
 
-    String patientEmail = patient.getEmail();
-    String patientName = patient.getName();
-    String doctorEmail = doctor.getEmail();
-    String doctorName = doctor.getName();
-    String date = appointment.getAppointmentDate().toString();
+		if (patientOpt.isPresent() && doctorOpt.isPresent()) {
+			Appointment appointment = new Appointment();
+			appointment.setPatient(patientOpt.get());
+			appointment.setDoctor(doctorOpt.get());
+			appointment.setAppointmentDate(appointmentDTO.getAppointmentDate());
+			appointment.setDiseaseDescription(appointmentDTO.getDiseaseDescription());
+			appointment.setStatus("PENDING");
 
-    //  Email to patient
-    if (status.equals("ACCEPTED")) {
-        mailService.sendSimpleEmail(
-            patientEmail,
-            "Appointment Accepted",
-            "Dear " + patientName + ",\n\nYour appointment with Dr. " + doctorName +
-            " on " + date + " has been ACCEPTED.\n\nThank you!"
-        );
+			appointmentRepository.save(appointment);
+		} else {
+			throw new RuntimeException("Invalid Patient or Doctor ID");
+		}
+	}
 
-        //  Email to doctor
-        mailService.sendSimpleEmail(
-            doctorEmail,
-            "Appointment Confirmed",
-            "Dear Dr. " + doctorName + ",\n\nYou have accepted an appointment with patient " +
-            patientName + " on " + date + ".\n\nPlease be available on time."
-        );
-    } else if (status.equals("REJECTED")) {
-        mailService.sendSimpleEmail(
-            patientEmail,
-            "Appointment Rejected",
-            "Dear " + patientName + ",\n\nWe regret to inform you that your appointment with Dr. " +
-            doctorName + " on " + date + " has been REJECTED.\n\nPlease try booking another slot."
-        );
-    }
+	public List<Appointment> findByPatientId(Long patientId) {
+		return appointmentRepository.findByPatient_Id(patientId);
+	}
 
-    return updatedAppointment;
-}
+	public Appointment updateAppointmentStatus(UpdateAppointmentStatusDTO dto) {
+		Optional<Appointment> optionalAppointment = appointmentRepository.findById(dto.getAppointmentId());
+
+//		if (!optionalAppointment.isPresent()) {
+//			throw new RuntimeException("Appointment not found with ID: " + dto.getAppointmentId());
+//		}
+
+		Appointment appointment = optionalAppointment.get();
+
+//		// Validate the status
+//		if (!dto.getStatus().equalsIgnoreCase("ACCEPTED") && !dto.getStatus().equalsIgnoreCase("REJECTED")) {
+//			throw new RuntimeException("Invalid status! Allowed values: ACCEPTED, REJECTED");
+//		}
+
+		// Update status
+		appointment.setStatus(dto.getStatus().toUpperCase());
+		return appointmentRepository.save(appointment);
+	}
+
+	public List<Appointment> getAppointmentsByDoctor(Long doctorId) {
+		return appointmentRepository.findByDoctor_Id(doctorId);
+	}
+
 }
