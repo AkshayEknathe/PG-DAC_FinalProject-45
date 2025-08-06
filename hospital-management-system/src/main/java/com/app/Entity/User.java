@@ -1,6 +1,5 @@
 package com.app.Entity;
 
-import javax.management.relation.Role;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
