@@ -1,0 +1,316 @@
+/* Styles.css */
+
+/* Navbar */
+.custom-navbar {
+  background-color: #076cea !important;
+  border-bottom: 2px solid black;
+  position: sticky;
+  top: 0;
+  z-index: 1200; /* Above sidebar */
+}
+
+/* Logo Styling */
+.logo-style {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: linear-gradient(to right, black, black);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.white-logo {
+  background: none;
+  color: white;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+}
+
+/* User Info */
+.admin-badge {
+  background-color: #ffffff;
+  color: #000;
+  font-size: 1.05rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logout-btn {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Layout */
+.layout-container {
+  display: flex;
+  min-height: calc(100vh - 60px); /* Adjust for navbar height */
+  background-color: #f5f7fa;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 12%;
+  min-width: 200px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 60px; /* Below navbar */
+  height: calc(100vh - 60px);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-header {
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+
+.sidebar-nav {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background 0.3s, color 0.3s;
+}
+
+.sidebar-link .icon {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+}
+
+.sidebar-link.active {
+  background-color: #dee2e6;
+  color: #000;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 200px; /* Matches min-width of sidebar */
+  overflow-y: auto;
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 70px; /* Below navbar */
+  left: 10px;
+  background-color: #076cea;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1100;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+.sidebar-toggle:hover {
+  background-color: #0056b3;
+}
+
+/* View Content Styling */
+.view-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.view-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%); /* Hidden by default */
+    width: 200px; /* Fixed width for mobile */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Slide in when toggled */
+  }
+
+  .sidebar-header {
+    display: block; /* Keep header visible */
+  }
+
+  .sidebar-nav {
+    flex-direction: column; /* Vertical links */
+    margin-top: 10px;
+  }
+
+  .sidebar-link {
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+
+  .main-content {
+    margin-left: 0; /* No offset when sidebar is hidden */
+    padding: 15px;
+  }
+
+  .sidebar-toggle {
+    display: block; /* Show toggle button */
+  }
+
+  .admin-badge {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .logout-btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    width: 180px; /* Smaller width for very small screens */
+  }
+
+  .sidebar-link {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+}
+
+/* ViewAppointmentsD Specific Styles */
+.view-appointments-container {
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.appointment-table th {
+  background-color: #076cea;
+  color: white;
+}
+
+.appointment-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.appointment-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.accept-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accept-btn:hover {
+  background-color: #45a049;
+}
+
+.decline-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.decline-btn:hover {
+  background-color: #e53935;
+}
+
+.text-success {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.text-danger {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.upload-label {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.upload-label:hover {
+  background-color: #0056b3;
+}
+
+input[type="file"] {
+  display: none;
+}
