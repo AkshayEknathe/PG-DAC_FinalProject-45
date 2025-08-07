@@ -1,0 +1,78 @@
+.product-list-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns per row */
+  gap: 16px;
+  padding: 20px;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .product-list-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .product-list-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .product-list-container {
+    grid-template-columns: 1fr; /* 1 column on extra small screens */
+  }
+}
+
+.doctor-card {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+}
+
+.doctor-image {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.doctor-details {
+  margin-top: 10px;
+}
+
+.doctor-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.doctor-degree, .doctor-phone, .doctor-specialization {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.book-appointment-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.book-appointment-button:hover {
+  background-color: #0056b3;
+}
