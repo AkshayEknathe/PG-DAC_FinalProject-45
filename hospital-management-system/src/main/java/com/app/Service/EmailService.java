@@ -9,22 +9,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class EmailService {
-	
-	@Autowired
-	private JavaMailSender javaMailSender;
 
-	public void sendEmail(String to, String subject, String body) {
-		try {
-			SimpleMailMessage mail = new SimpleMailMessage();
-			mail.setTo(to);
-			mail.setSubject(subject);
-			mail.setText(body);
-			
-			javaMailSender.send(mail);
-		}catch(Exception e) {
-			log.error("exc while sendEmail ", e);
-		}
-		
-	}
+public class EmailService {
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    public void sendEmail(String to, String subject, String body) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(body);
+        javaMailSender.send(message);
+    }
 }
+

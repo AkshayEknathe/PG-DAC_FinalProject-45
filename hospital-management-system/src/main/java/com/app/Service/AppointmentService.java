@@ -1,5 +1,6 @@
 package com.app.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.app.DTO.AppointmentDTO;
@@ -21,5 +22,7 @@ public interface AppointmentService {
 	List<Appointment> findByPatientId(Long patientId);
 
 	List<Appointment> getAppointmentsByDoctor(Long doctorId);
+	
+	List<Appointment> getAppointmentsByDate(LocalDate date);
 
 }
