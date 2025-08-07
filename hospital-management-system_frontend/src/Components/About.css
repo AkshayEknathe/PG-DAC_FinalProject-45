@@ -1,0 +1,54 @@
+.about-container {
+  max-width: 1000px;
+  margin: 5% auto;
+  padding: 3rem;
+  background-color: #f4f9ff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.about-header h1 {
+  font-size: 2.8rem;
+  color: #076cea;
+  font-weight: 700;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: #555;
+  font-style: italic;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* Back to Home button */
+.back-button-container {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.back-home-btn {
+  background-color: #076cea;
+  color: white;
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-home-btn:hover {
+  background-color: #054fa4;
+}
