@@ -1,0 +1,79 @@
+/* Container for Patients Table */
+.view-patients-container {
+  max-width: 90%;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f8f9fa; /* Lighter background for better contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  overflow-x: auto; /* Enables horizontal scrolling on small screens */
+}
+
+/* Title Styling */
+h2 {
+  text-align: center;
+  color: #222;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.patients-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+/* Table Headers */
+.patients-table th {
+  background-color: #076cea;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+/* Table Data Cells */
+.patients-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+/* Alternate Row Colors for Better Readability */
+.patients-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.patients-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Hover Effect */
+.patients-table tr:hover {
+  background-color: #e3f2fd;
+  transition: 0.3s ease-in-out;
+}
+
+/* Responsive Table - Scroll on Small Screens */
+@media (max-width: 768px) {
+  .view-patients-container {
+    padding: 15px;
+  }
+
+  .patients-table {
+    font-size: 14px;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .patients-table th,
+  .patients-table td {
+    padding: 10px;
+  }
+}
