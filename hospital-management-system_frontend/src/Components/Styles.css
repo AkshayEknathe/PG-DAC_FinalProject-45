@@ -1,0 +1,19 @@
+.logo-style1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: transparent;
+  background: linear-gradient(to right, #000, #000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  white-space: nowrap; /* Prevent text wrap on small screens */
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .logo-style1 {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+}
